@@ -1,5 +1,7 @@
 const fs = require("fs")
 const path = require("path")
+
+// https://www.npmjs.com/package/front-matter-editor
 const editor = require("front-matter-editor")
 
 const { info, warn, log, error } = console
