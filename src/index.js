@@ -20,7 +20,11 @@ rawData
   .forEach(post => {
     const url = post.feed_source_url || post.canonical_url
     const [_, year, month, day, slug] = [...url.matchAll(pattern)][0]
-    info(`year=${year}, month=${month}, day=${day}, slug=${slug}`)
+    // info(`year=${year}, month=${month}, day=${day}, slug=${slug}`)
+
+    const filename = path.join(__dirname, `../blog/${year}/${slug}/index.md`)
+    const exists = fs.existsSync(filename)
+    info(`${exists} ??? ${filename}`)
   })
 
 // const [_, year, month, day, slug] = [
@@ -28,10 +32,6 @@ rawData
 //     pattern
 //   ),
 // ][0]
-
-// const filename = path.join(__dirname, `../blog/${year}/${slug}/index.md`)
-// const exists = fs.existsSync(filename)
-// // info(`${filename} exists????? ${exists}`)
 
 // editor
 //   .read(filename)
