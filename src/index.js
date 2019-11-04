@@ -47,10 +47,9 @@ rawData
         .data((data, matter) => {
           matter.data = Object.assign(data, {
             date: `${year}-${month}-${day}`,
-            published_at,
-            cached_tag_list,
-            cached_user_name,
-            published,
+            published_at: published_at || "",
+            tags: cached_tag_list || "",
+            author: cached_user_name || "",
           })
         })
         .save(
