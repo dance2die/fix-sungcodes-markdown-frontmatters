@@ -19,17 +19,18 @@ const [_, year, month, day, slug] = [
   ),
 ][0]
 
-// info(`m, d, y, slug`, year, month, day, slug)
+info(`year=${year}, month=${month}, day=${day}, slug=${slug}`)
 
 const filename = path.join(__dirname, `../blog/${year}/${slug}/index.md`)
 const exists = fs.existsSync(filename)
 // info(`${filename} exists????? ${exists}`)
-// editor.read(filename).show("data")
+
 editor
   .read(filename)
   .data((data, matter) => {
     matter.data = Object.assign(data, {
       published_at: "2018-12-19T02:14:23.000Z",
+      date: `${year}-${month}-${day}`,
     })
   })
   .save(path.join(__dirname, `../blog/${year}/${slug}/`), {}, (err, matter) => {
