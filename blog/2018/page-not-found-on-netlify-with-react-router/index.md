@@ -1,7 +1,8 @@
 ---
-title: "Page Not Found on Netlify with React Router"
-date: "2018-12-19"
-coverImage: "featured-image-4.jpg"
+title: Page Not Found on Netlify with React Router
+date: '2018-12-19'
+coverImage: featured-image-4.jpg
+published_at: '2018-12-19T02:14:23.000Z'
 ---
 
 _Photo by _[_Hello I'm Nik_](https://unsplash.com/photos/MAgPyHRO0AA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)_ on _[_Unsplash_](https://unsplash.com/search/photos/direction?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
@@ -77,3 +78,4 @@ Resources
 - [Source code](https://codesandbox.io/s/w2p29jj0jl) with**out** `_redirects` file.
 - [Netlify site](https://react-router-v4-to-deploy-to-netlify-with-redirects.netlify.com/else) with \_redirects file.
 - [Netlify site](https://react-router-v4-to-deploy-to-netlify-without-redirects.netlify.com/) with**out** \_redirects file.
+

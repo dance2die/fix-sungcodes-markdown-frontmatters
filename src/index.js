@@ -23,5 +23,17 @@ const [_, year, month, day, slug] = [
 
 const filename = path.join(__dirname, `../blog/${year}/${slug}/index.md`)
 const exists = fs.existsSync(filename)
-info(`${filename} exists????? ${exists}`)
-editor.read(filename).show("data")
+// info(`${filename} exists????? ${exists}`)
+// editor.read(filename).show("data")
+editor
+  .read(filename)
+  .data((data, matter) => {
+    matter.data = Object.assign(data, {
+      published_at: "2018-12-19T02:14:23.000Z",
+    })
+  })
+  .save(path.join(__dirname, `../blog/${year}/${slug}/`), {}, (err, matter) => {
+    if (err) error(`ERRRORORORORORO!===> `, err)
+    console.log(matter)
+  })
+// .show("data")
