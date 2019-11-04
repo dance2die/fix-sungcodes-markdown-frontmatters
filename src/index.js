@@ -1,5 +1,6 @@
 const fs = require("fs")
 const path = require("path")
+const editor = require("front-matter-editor")
 
 const { info, warn, log, error } = console
 
@@ -21,3 +22,4 @@ const [_, year, month, day, slug] = [
 const filename = path.join(__dirname, `../blog/${year}/${slug}/index.md`)
 const exists = fs.existsSync(filename)
 info(`${filename} exists????? ${exists}`)
+editor.read(filename).show("data")
