@@ -14,35 +14,56 @@ let rawData = JSON.parse(fs.readFileSync(path.join(__dirname, "articles.json")))
 // cached_tag_list: tags,
 // cached_user_name: author,
 
-const pattern = /https:\/\/www.slightedgecoder.com\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\/$/gi
-rawData
-  .filter(_ => !!_.feed_source_url || !!_.canonical_url)
-  .forEach(post => {
-    const url = post.feed_source_url || post.canonical_url
-    const [_, year, month, day, slug] = [...url.matchAll(pattern)][0]
-    // info(`year=${year}, month=${month}, day=${day}, slug=${slug}`)
-
-    const filename = path.join(__dirname, `../blog/${year}/${slug}/index.md`)
-    const exists = fs.existsSync(filename)
-    info(`${exists} ??? ${filename}`)
-  })
-
 // const [_, year, month, day, slug] = [
 //   ..."https://www.slightedgecoder.com/2018/12/18/page-not-found-on-netlify-with-react-router/".matchAll(
 //     pattern
 //   ),
 // ][0]
 
-// editor
-//   .read(filename)
-//   .data((data, matter) => {
-//     matter.data = Object.assign(data, {
-//       published_at: "2018-12-19T02:14:23.000Z",
-//       date: `${year}-${month}-${day}`,
-//     })
-//   })
-//   .save(path.join(__dirname, `../blog/${year}/${slug}/`), {}, (err, matter) => {
-//     if (err) error(`ERRRORORORORORO!===> `, err)
-//     console.log(matter)
-//   })
-// // .show("data")
+const pattern = /https:\/\/www.slightedgecoder.com\/(\d{4})\/(\d{2})\/(\d{2})\/(.+)\/$/gi
+rawData
+  .filter(_ => !!_.feed_source_url || !!_.canonical_url)
+  // .forEach(post => {
+  .forEach(
+    ({
+      feed_source_url,
+      canonical_url,
+      published_at,
+      cached_tag_list,
+      cached_user_name,
+      published,
+      description,
+    }) => {
+      const url = feed_source_url || canonical_url
+      const [_, year, month, day, slug] = [...url.matchAll(pattern)][0]
+      // info(`year=${year}, month=${month}, day=${day}, slug=${slug}`)
+
+      const filename = path.join(__dirname, `../blog/${year}/${slug}/index.md`)
+      // const exists = fs.existsSync(filename)
+      // info(`${exists} ??? ${filename}`)
+
+      editor
+        .read(filename)
+        .data((data, matter) => {
+          matter.data = Object.assign(data, {
+            date: `${year}-${month}-${day}`,
+            published_at,
+            cached_tag_list,
+            cached_user_name,
+            published,
+          })
+        })
+        .save(
+          path.join(__dirname, `../blog/${year}/${slug}/`),
+          {},
+          (err, matter) => {
+            if (err) error(`ERRRORORORORORO!===> `, err)
+            // console.log(matter)
+            info(`processed ${filename}`)
+          }
+        )
+      // .show("data")
+
+      return
+    }
+  )
