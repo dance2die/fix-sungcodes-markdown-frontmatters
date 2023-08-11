@@ -31,7 +31,7 @@ https://youtu.be/n5IfLffxtzQ
 
 ### Workaround
 
-Workaround for the flicker was generously provided by [Robert](https://twitter.com/bytefluxio) & Mehdi Merah (Sorry, couldn't find his info on Slack) on two separate Slack servers ([CodingBlocks](https://www.codingblocks.net/slack/) & [Animation at Work](https://damp-lake-50659.herokuapp.com/)).
+Workaround for the flicker was generously provided by [Robert](https://twitter.com/bytefluxio) & [Mehdi Merah](https://mehdi.cc) on two separate Slack servers ([CodingBlocks](https://www.codingblocks.net/slack/) & [Animation at Work](https://damp-lake-50659.herokuapp.com/)).
 
 Instead of replacing the background, load the full image in another tag and layer the full image on top of SVG.
 
